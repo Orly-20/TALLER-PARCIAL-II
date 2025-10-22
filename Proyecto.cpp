@@ -52,8 +52,7 @@ struct Producto {
 
 
 int main (){
-
-
+ hola
 
 
 
