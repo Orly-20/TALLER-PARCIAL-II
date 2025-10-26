@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <cctype>
+#include <cstdlib>
 using namespace std;
 
 struct Usuario {
@@ -15,7 +16,7 @@ struct Usuario {
 
 struct CarritoDeCompras {
     int idCarrito;
-	string nombreUsuario;     // Corregido: era "Usuario usuario"
+	string nombreUsuario;     
     vector<int> productosIds; // IDs de productos en el carrito
     double subtotal;
     double impuestos;
@@ -24,7 +25,7 @@ struct CarritoDeCompras {
 struct OrdenDeCompra {
     int idOrden;
     vector<int> productosIds; // IDs de productos
-    double subtotal;
+    long subtotal;
     double impuestos;
     double envio;
     double total;
@@ -35,7 +36,7 @@ struct Categoria {
     string nombre;
 };
 
-struct Comentario {              // Corregido: era "Comentarios"
+struct Comentario {             
     int idComentario;
     string nombreProducto;       // Nombre del producto
     string nombreUsuario;        // Nombre del usuario
@@ -53,20 +54,20 @@ struct Producto {
 
 vector<Usuario> usuarios;
 vector<Producto> productos;
-vector<Comentario> comentarios;        // Corregido
-vector<CarritoDeCompras> carritos;     // Corregido
-vector<OrdenDeCompra> ordenes;         // Corregido
+vector<Comentario> comentarios;        
+vector<CarritoDeCompras> carritos;     
+vector<OrdenDeCompra> ordenes;         
 vector<Categoria> categorias;
 
 void cargarDatos(){
-    // Cargar usuarios (ya lo tenías, solo correcciones menores)
+    // Cargar usuarios
     usuarios.push_back({1,"Juan Pérez", "juan.perez@email.com", "Qwerty123", "Carrera 45 #10-20", "Tarjeta de crédito"});
     usuarios.push_back({2, "Ana Gómez", "ana.gomez@email.com", "Pass456", "Calle 21 #35-50", "PayPal"});
     usuarios.push_back({3, "Carlos Ruiz", "carlos.ruiz@email.com", "Segura789", "Avenida Principal #100", "Transferencia bancaria"});
     usuarios.push_back({4, "Sofía Martínez", "sofia.martinez@email.com", "Clave987", "Calle 8 #20-30", "Efectivo"});
     usuarios.push_back({5, "Diego Fernández", "diego.fernandez@email.com", "Contra654", "Carrera 77 #40-60", "Tarjeta débito"});
     
-    // Cargar productos (corregidos según el PDF)
+    // Cargar productos (según el PDF)
     productos.push_back({1, "Laptop", "Portátil con pantalla Full HD y SSD de 512GB", 89999, 10});
     productos.push_back({2, "Smartphone", "Teléfono con cámara de 108MP y carga rápida", 49950, 20});
     productos.push_back({3, "Tablet", "Dispositivo con pantalla táctil de 10 pulgadas", 29999, 15});
@@ -118,7 +119,7 @@ void cargarDatos(){
     productos.push_back({49, "Smart Plug", "Enchufe inteligente compatible con asistentes virtuales", 3999, 42});
     productos.push_back({50, "Timbre Inteligente", "Timbre con cámara y conexión a Wi-Fi", 14999, 10});
    
-    // Cargar TODOS los 50 comentarios (antes tenías solo 10)
+    // Cargar TODOS los 50 comentarios 
     comentarios.push_back({1, "Laptop", "Juan Pérez", "Excelente rendimiento; muy rápida. ¡Me encanta!", "1/05/2025"});
     comentarios.push_back({2, "Smartphone", "Ana Gómez", "Buena cámara pero la batería dura poco.", "3/05/2025"});
     comentarios.push_back({3, "Tablet", "Carlos Ruiz", "No me gustó; pantalla de baja calidad.", "5/05/2025"});
