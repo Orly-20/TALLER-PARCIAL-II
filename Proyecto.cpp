@@ -3,8 +3,6 @@
 #include <string>
 #include <cctype>
 using namespace std;
-setlocale(LC_ALL,"spanish");
-
 
 struct Usuario {
     int idUsuario;
@@ -171,10 +169,7 @@ void cargarDatos(){
     comentarios.push_back({48, "Capturadora", "Luisa Mejía", "Ideal para streaming y grabaciones en alta calidad.", "2/08/2025"});
     comentarios.push_back({49, "Smart Plug", "Victoria Torres", "Muy práctico; fácil de conectar y configurar.", "4/08/2025"});
     comentarios.push_back({50, "Timbre Inteligente", "Federico Montoya", "Buena cámara; útil para seguridad.", "6/08/2025"});
-<<<<<<< HEAD
-=======
 }
-
 
 // =====================================================
 // FUNCIÓN: mostrarDatosCargados() - CORREGIDA
