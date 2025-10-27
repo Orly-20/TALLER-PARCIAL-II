@@ -1,3 +1,5 @@
+//Integrantes:
+//Luis miranda, Orlando Arroyo, Samuel Porto.
 #include <iostream>
 #include <vector>
 #include <string>
