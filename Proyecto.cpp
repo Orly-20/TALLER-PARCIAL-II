@@ -175,7 +175,7 @@ void cargarDatos(){
 }
 
 // =====================================================
-// FUNCIÓN: mostrarDatosCargados() - CORREGIDA
+// FUNCIÓN: mostrarDatosCargados() 
 // =====================================================
 void mostrarDatosCargados() {
     cout << "\n========== DATOS CARGADOS ==========\n";
@@ -215,13 +215,13 @@ int iniciarSesion(){
 	 // Buscar usuario en el vector
     for (int i = 0; i < usuarios.size(); i++) {
         if (usuarios[i].correoElectronico == correo && usuarios[i].contrasena == contrasena) {
-            cout << "\n? ¡Bienvenido " << usuarios[i].nombre << "!\n";
+            cout << "\n¡Bienvenido " << usuarios[i].nombre << "!\n";
             return i; // Retorna índice del usuario
         }
     }
     
     // Si no se encuentra el usuario
-    cout << "\n? Usuario inválido. Correo o contraseña incorrectos.\n";
+    cout << "\n Usuario inválido. Correo o contraseña incorrectos.\n";
     return -1;
 
 	
@@ -241,7 +241,7 @@ void listarProductosBajoStock() {
             cout << "Nombre: " << productos[i].nombre << endl;
             cout << "Descripción: " << productos[i].descripcion << endl;
             cout << "Precio: $" << productos[i].precio << endl;
-            cout << "Stock: " << productos[i].stock << " unidades ??" << endl;
+            cout << "Stock: " << productos[i].stock << " unidades " << endl;
             cout << "----------------------------------------\n";
             encontrado = true;
         }
@@ -264,11 +264,11 @@ int convertirFecha(string fecha) {
     size_t pos2 = fecha.find('/', pos1 + 1);
     
     // Extraer día, mes y año
-    dia = stoi(fecha.substr(0, pos1));
-    mes = stoi(fecha.substr(pos1 + 1, pos2 - pos1 - 1));
-    anio = stoi(fecha.substr(pos2 + 1));
+    dia = atoi(fecha.substr(0, pos1).c_str());
+    mes = atoi(fecha.substr(pos1 + 1, pos2 - pos1 - 1).c_str());
+    anio = atoi(fecha.substr(pos2 + 1).c_str());
     
-    // Retornar como YYYYMMDD
+    // Retornar como YYYY/MM/DD
     return anio * 10000 + mes * 100 + dia;
 }
 
@@ -404,17 +404,17 @@ void adicionarProductosCarrito(int indiceUsuario) {
         int indiceProducto = buscarProductoPorId(idProducto);
         
         if (indiceProducto == -1) {
-            cout << "? Producto no encontrado.\n";
+            cout << "Producto no encontrado.\n";
         } else {
             cout << "Ingrese la cantidad: ";
             cin >> cantidad;
             
             // Validar stock disponible
             if (cantidad > productos[indiceProducto].stock) {
-                cout << "? Stock insuficiente. Solo hay " 
+                cout << "Stock insuficiente. Solo hay " 
                      << productos[indiceProducto].stock << " unidades.\n";
             } else if (cantidad <= 0) {
-                cout << "? Cantidad inválida.\n";
+                cout << "Cantidad inválida.\n";
             } else {
                 // Agregar IDs de productos al carrito (según cantidad)
                 for (int i = 0; i < cantidad; i++) {
@@ -428,7 +428,7 @@ void adicionarProductosCarrito(int indiceUsuario) {
                 // Calcular impuestos (19%)
                 nuevoCarrito.impuestos = nuevoCarrito.subtotal * 0.19;
                 
-                cout << "? " << cantidad << " unidad(es) de " 
+                cout << " " << cantidad << " unidad(es) de " 
                      << productos[indiceProducto].nombre 
                      << " agregado(s) al carrito.\n";
                 cout << "Stock restante: " << productos[indiceProducto].stock << endl;
@@ -442,12 +442,12 @@ void adicionarProductosCarrito(int indiceUsuario) {
     // Guardar el carrito si tiene productos
     if (!nuevoCarrito.productosIds.empty()) {
         carritos.push_back(nuevoCarrito);
-        cout << "\n? Carrito creado exitosamente con ID: " << nuevoCarrito.idCarrito << endl;
+        cout << "\nCarrito creado exitosamente con ID: " << nuevoCarrito.idCarrito << endl;
         cout << "Subtotal: $" << nuevoCarrito.subtotal << endl;
         cout << "Impuestos (19%): $" << nuevoCarrito.impuestos << endl;
         cout << "Total: $" << (nuevoCarrito.subtotal + nuevoCarrito.impuestos) << endl;
     } else {
-        cout << "\n?? No se agregaron productos al carrito.\n";
+        cout << "\n No se agregaron productos al carrito.\n";
     }
 }
 
@@ -511,7 +511,7 @@ void listarProductosCarrito(int indiceUsuario) {
     }
     
     if (!encontrado) {
-        cout << "\n?? No tienes carritos de compras.\n";
+        cout << "\n No tienes carritos de compras.\n";
     }
 }
 
@@ -535,7 +535,7 @@ void mostrarMenu(int indiceUsuario) {
         cout << "  5. Listar mis carritos\n";
         cout << "  0. Cerrar sesión\n";
         cout << "----------------------------------------\n";
-        cout << "  Seleccione una opción: ";
+        cout << " Seleccione una opción: ";
         cin >> opcion;
         
         switch(opcion) {
@@ -555,10 +555,10 @@ void mostrarMenu(int indiceUsuario) {
                 listarProductosCarrito(indiceUsuario);
                 break;
             case 0:
-                cout << "\n?? Cerrando sesión...\n";
+                cout << "\nCerrando sesión...\n";
                 break;
             default:
-                cout << "\n? Opción inválida. Intente nuevamente.\n";
+                cout << "\nOpción inválida. Intente nuevamente.\n";
         }
         
         // Pausa para que el usuario pueda ver los resultados
@@ -576,7 +576,7 @@ void mostrarMenu(int indiceUsuario) {
 // =====================================================
 int main() {
     setlocale(LC_ALL, "spanish");
-    
+
     // Cargar datos iniciales
     cargarDatos();
     
@@ -611,5 +611,4 @@ int main() {
     cout << "+----------------------------------------+\n";
     
     return 0;
->>>>>>> c7194d4057bc5dec9f248e96509e8d1a98543311
 }
